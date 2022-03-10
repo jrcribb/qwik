@@ -775,7 +775,9 @@ function prepend(ctx: RenderContext, parent: Element, newChild: Node) {
 
 function removeNode(ctx: RenderContext, parent: Node, el: Node) {
   const fn = () => {
-    parent.removeChild(el);
+    if (el.parentNode === parent) {
+      parent.removeChild(el);
+    }
   };
   ctx.operations.push({
     el: el,
